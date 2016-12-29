@@ -20,7 +20,7 @@ var fs = require('fs');
 // });
 
 //read png
-// fs.readFile('banner.jpg', function (err, data) {
+// fs.readFile('01/banner.jpg', function (err, data) {
 //     if (err) {
 //         console.log(err);
 //     } else {
@@ -42,7 +42,7 @@ var fs = require('fs');
 
 
 // var data = 'Hello, Node.js';
-// fs.writeFile('output.txt', data, function (err) {
+// fs.writeFile('01/output.txt', data, function (err) {
 //     if (err) {
 //         console.log(err);
 //     } else {
@@ -80,7 +80,7 @@ var fs = require('fs');
 // 要注意，data事件可能会有多次，每次传递的chunk是流的一部分数据。
 // 要以流的形式写入文件，只需要不断调用write()方法，最后以end()结束：
 // 打开一个流:
-var rs = fs.createReadStream('sample.txt', 'utf-8');
+var rs = fs.createReadStream('01/sample.txt', 'utf-8');
 
 rs.on('data', function (chunk) {
     console.log('DATA:')
