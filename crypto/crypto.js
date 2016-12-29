@@ -55,3 +55,37 @@ console.log('Plain text: ' + data);
 console.log('Encrypted text: ' + encrypted);
 console.log('Decrypted text: ' + decrypted);
 //=========================================================================//
+
+
+
+
+//DHDiffie-Hellman
+// DH算法是一种密钥交换协议，它可以让双方在不泄漏密钥的情况下协商出一个密钥来
+
+// xiaoming's keys:
+var ming = crypto.createDiffieHellman(512);
+var ming_keys = ming.generateKeys();
+
+var prime = ming.getPrime();
+var generator = ming.getGenerator();
+
+console.log('Prime: ' + prime.toString('hex'));
+console.log('Generator: ' + generator.toString('hex'));
+
+// xiaohong's keys:
+var hong = crypto.createDiffieHellman(prime, generator);
+var hong_keys = hong.generateKeys();
+
+// exchange and generate secret:
+var ming_secret = ming.computeSecret(hong_keys);
+var hong_secret = hong.computeSecret(ming_keys);
+
+// print secret:
+/**
+ * Prime: f52a403dcbafad561c9124546bb285630b80925aaa05aab2929215810f87328a9ee4920f454e3f469466a9522a060e3069d1f23ef7e407a085842530630e1293
+    Generator: 02
+    Secret of Xiao Ming: 00769379cbed33abb84b07eafb12b869ca3c13293a8ae62e3bbef9d86fc8d8c166b464cc8cedd8e2e0128ae0174fa08ee5f7557794a4370405c360d90c3b5a1d
+    Secret of Xiao Hong: 00769379cbed33abb84b07eafb12b869ca3c13293a8ae62e3bbef9d86fc8d8c166b464cc8cedd8e2e0128ae0174fa08ee5f7557794a4370405c360d90c3b5a1d
+ */
+console.log('Secret of Xiao Ming: ' + ming_secret.toString('hex'));
+console.log('Secret of Xiao Hong: ' + hong_secret.toString('hex'));
