@@ -25,6 +25,13 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceRoot}/http/http.js",
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Run main.js",
             "program": "${workspaceRoot}/01/main.js",
             "cwd": "${workspaceRoot}"
