@@ -17,3 +17,41 @@ hash.update(new Buffer('JA0CK5!'));
 //md5 de204a26071426acdf12de4e973e82fe
 //sha1 a23b4b38546f4eea7675a30f9b821cfde4131c65
 console.log(hash.digest('hex'));
+
+// Hmac算法也是一种哈希算法，它可以利用MD5或SHA1等哈希算法。不同的是，Hmac还需要一个密钥：
+//只要密钥发生了变化，那么同样的输入数据也会得到不同的签名，因此，可以把Hmac理解为用随机数“增强”的哈希算法。
+const hmac = crypto.createHmac('sha256', 'secret-key');
+
+hmac.update('Ja0ck5!');
+hmac.update(new Buffer('JA0CK5!'));
+// a614f8081ede61ee7d8792cf8590d9614b45e1e3e8b0ea1cbb6d614671f50042
+console.log(hmac.digest('hex')); 
+
+//AES是一种常用的对称加密算法，加解密都用同一个密钥。crypto模块提供了AES支持，但是需要自己封装好函数
+
+function aesEncrypt(data, key) {
+    const cipher = crypto.createCipher('aes192', key);
+    var crypted = cipher.update(data, 'utf8', 'hex');
+    crypted += cipher.final('hex');
+    return crypted;
+}
+
+function aesDecrypt(encrypted, key) {
+    const decipher = crypto.createDecipher('aes192', key);
+    var decrypted = decipher.update(encrypted, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+    return decrypted;
+}
+
+var data = 'some secret messages!';
+var key = 'Password';
+var encrypted = aesEncrypt(data, key);
+var decrypted = aesDecrypt(encrypted, key);
+//=========================================================================//
+// Plain text: some secret messages!
+// Encrypted text: a07940fd0ba884e5bc1db6a963cf3567383aaa43418fd105220df38981149573
+// Decrypted text: some secret messages!
+console.log('Plain text: ' + data);
+console.log('Encrypted text: ' + encrypted);
+console.log('Decrypted text: ' + decrypted);
+//=========================================================================//
