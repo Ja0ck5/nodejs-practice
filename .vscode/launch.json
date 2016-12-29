@@ -25,7 +25,14 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "fileServer.js",
+            "program": "${workspaceRoot}/http/fileServer.js",
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "http.js",
             "program": "${workspaceRoot}/http/http.js",
             "cwd": "${workspaceRoot}"
         },
