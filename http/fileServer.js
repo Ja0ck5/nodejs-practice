@@ -42,15 +42,19 @@ var
 
 // 从命令行参数获取root目录，默认是当前目录:
 var root = path.resolve(process.argv[2] || '.');
-
+// c:\Users\Ja0ck5\Desktop\data\nodejs
 console.log('Static root dir: ' + root);
 
 // 创建服务器:
 var server = http.createServer(function (request, response) {
-    // 获得URL的path，类似 '/css/bootstrap.css':
+    
     var pathname = url.parse(request.url).pathname;
-    // 获得对应的本地文件路径，类似 '/srv/www/css/bootstrap.css':
+    //pathname:/index.html
+    console.log('pathname:'+pathname);
+    
     var filepath = path.join(root, pathname);
+    //filepath:c:\Users\Ja0ck5\Desktop\data\nodejs\index.html
+    console.log('filepath:'+filepath);
     // 获取文件状态:
     fs.stat(filepath, function (err, stats) {
         if (!err && stats.isFile()) {
