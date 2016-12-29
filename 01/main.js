@@ -96,7 +96,7 @@ rs.on('error', function (err) {
 });
 
 
-
+//所有可以读取数据的流都继承自stream.Readable，所有可以写入的流都继承自stream.Writable。
 var ws1 = fs.createWriteStream('01/output1.txt', 'utf-8');
 ws1.write('use Stream write text file\r\n' );
 ws1.write('使用Stream写入文本数据...\n');
@@ -108,3 +108,15 @@ ws2.write(new Buffer('use Stream write Binary datas\r\n'));
 ws2.write(new Buffer('使用Stream写入二进制数据...\n', 'utf-8'));
 ws2.write(new Buffer('END.', 'utf-8'));
 ws2.end();
+
+
+// pipe
+
+// 一个Readable流和一个Writable流串起来后，所有的数据自动从Readable流进入Writable流，这种操作叫pipe。
+// 在Node.js中，Readable流有一个pipe()方法，就是用来干这件事的。
+// 让我们用pipe()把一个文件流和另一个文件流串起来，这样源文件的所有数据就自动写入到目标文件里了
+
+var rs = fs.createReadStream('01/sample.txt');
+var ws = fs.createWriteStream('01/copied.txt');
+
+rs.pipe(ws);
