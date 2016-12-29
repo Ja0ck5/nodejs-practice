@@ -1,0 +1,3 @@
+use Stream write text file
+使用Stream写入文本数据...
+END.

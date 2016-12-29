@@ -1,0 +1,3 @@
+use Stream write Binary datas
+使用Stream写入二进制数据...
+END.
