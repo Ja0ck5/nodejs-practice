@@ -25,6 +25,13 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "crypto.js",
+            "program": "${workspaceRoot}/crypto/crypto.js",
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "fileServer.js",
             "program": "${workspaceRoot}/http/fileServer.js",
             "cwd": "${workspaceRoot}"
